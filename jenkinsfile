@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+    options {
+        skipStagesAfterUnstable()
+    }
+    stages {
+         stage('Clone repository') { 
+            steps { 
+               // git branch: 'qa', credentialsId: 'code-commit', url: 'https://git-codecommit.us-east-1.amazonaws.com/v1/repos/wesports-backend'
+                git branch: 'qa', credentialsId: 'code-commit', url: 'https://git-codecommit.us-east-1.amazonaws.com/v1/repos/wesports-backend'
+            }
+        }
+    
+    
+     stage('Build') { 
+            steps { 
+                script{
+                 app = docker.build("sports-core")
+                }
+            }
+        }
+     stage('Push') {
+             steps {
+                 script{
+                         docker.withRegistry('https://766440649995.dkr.ecr.us-east-1.amazonaws.com/sports-core', 'ecr:us-east-1:aws_credentials') {
+                     app.push("${env.BUILD_NUMBER}")
+                     //app.push("latest")
+                    }
+                 }
+             }
+         }
+     stage('Integrate Jenkins with EKS Cluster and Deploy App') {
+            steps {
+                withAWS(credentials: 'aws_credentials', region: 'us-east-1') {
+                  script {
+                    version=("${env.BUILD_NUMBER}")
+                    sh "echo ${version}"
+                    sh "sed -i s/sports-core:latest/sports-core:${version}/g qa-node-wesports-backend.yml"
+                    sh ('aws eks update-kubeconfig --name WST-QA --region us-east-1')
+                    sh "kubectl apply -f qa-node-wesports-backend.yml -n qa"
+                    //sh "kubectl get all -n kube-system"
+                   }
+                }
+            }
+        }
+    }
+}

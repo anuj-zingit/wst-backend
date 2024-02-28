@@ -1,0 +1,16 @@
+service: ${opt:service, 'wesports'}
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, 'development'}
+  region: us-west-2
+
+functions:
+  app:
+    handler: lambda.handler
+    environment:
+      NODE_ENV: ${opt:NODE_ENV, 'development'}
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'

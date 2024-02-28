@@ -1,0 +1,35 @@
+# compiled output
+dist
+tmp
+sme
+deploy
+
+# dependencies
+node_modules
+bower_components
+
+# IDEs and editors
+.idea
+.vs
+.vscode
+.project
+.classpath
+*.launch
+.settings/
+.editorconfig
+
+# misc
+.sass-cache
+connect.lock
+coverage/*
+coverage_js/*
+libpeerconnection.log
+npm-debug.log
+testem.log
+typings
+apiCalls.log
+debugLogs.log
+
+#System Files
+.DS_Store
+Thumbs.db

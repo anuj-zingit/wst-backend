@@ -1,0 +1,10 @@
+node_modules
+dist
+store
+newrelic_agent.log*
+package-lock.json*
+# Dockerfile*
+apiCalls.log*
+errors.log*
+debugLogs.log*
+\.*.json

@@ -1,0 +1,61 @@
+{
+  "name": "wesports",
+  "version": "0.0.1",
+  "description": "Backend for wesports Application",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node ./src/server.ts",
+    "prod": "npm run build && npm run start",
+    "build": "tsc",
+    "start": "nodemon ./dist/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jsonwebtoken": "^8.5.2",
+    "amazon-cognito-identity-js": "^5.0.6",
+    "aws-sdk": "^2.1455.0",
+    "bluebird": "^3.7.2",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "express": "^4.18.2",
+    "html-pdf-node": "^1.0.8",
+    "jsonwebtoken": "^8.5.1",
+    "jwk-to-pem": "^2.0.5",
+    "moment": "^2.29.4",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.2.0",
+    "node-fetch": "^2.6.1",
+    "nodemailer": "^6.9.6",
+    "pool": "^0.4.1",
+    "qrcode": "^1.5.3",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.6",
+    "request-promise-native": "^1.0.7",
+    "routing-controllers": "^0.7.7",
+    "routing-controllers-openapi": "^1.7.0",
+    "serverless-http": "^2.5.0",
+    "ts-node": "^10.9.1",
+    "validate.js": "^0.13.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.5",
+    "@types/express-winston": "^3.0.3",
+    "@types/node": "^20.6.2",
+    "@types/request": "^2.48.1",
+    "@types/request-promise": "^4.1.45",
+    "@types/request-promise-native": "^1.0.16",
+    "husky": "^6.0.0",
+    "jira-prepare-commit-msg": "^1.6.0",
+    "typescript": "^4.9.5"
+  },
+  "jira-prepare-commit-msg": {
+    "messagePattern": "[$J]\n$M",
+    "jiraTicketPattern": "([A-Z]+-\\d+)",
+    "commentChar": "#",
+    "isConventionalCommit": false,
+    "allowEmptyCommitMessage": false
+  }
+}
